@@ -1,42 +1,92 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: #000;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.contenedor-principal {
+  display: flex;
+  align-items: flex-start;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.contenedor-izquierda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.mostrar-promedio, .Formulario, .lista-notas {
+  width: 300;
+  padding: 20px;
+  background-color: rgb(22, 22, 77);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgb(0, 0, 0,1);
+  color: rgb(255, 255, 255);
+  margin: 10px;
 }
 
-.card {
-  padding: 2em;
+
+.Formulario {
+  margin-bottom: 60px;
 }
 
-.read-the-docs {
-  color: #888;
+.lista-notas {
+  max-width: 300px;
+  margin-left: 20px;
+  height: auto;
+}
+
+.lista-notas  ul {
+  list-style-type: none;
+  padding: 10%;
+}
+
+.lista-notas  li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.lista-notas span {
+  flex: 1;
+}
+
+.lista-notas  input {
+  width: 60px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: right;
+  color: black;
+}
+
+input {
+  display: block;
+  width: calc(100% - 22px);
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #272626;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #000;
+}
+
+button {
+  display: inline-block;
+  margin: 10px 5px;
+  padding: 10px 20px;
+  background-color:  #6087b1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
 }

@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Component } from "react";
+import Formulario from './componentes/Formulario';
+import MostrarPromedio from '../../TP_Notas/src/componentes/MostrarPromedio';
+import ListadeNotas from '../src/componentes/ListadeNotas';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      notas: []
+    };
+  }
 
+agregarNota = (asignatura, nota) => {
+  this.setState(prevState => ({
+    notas: [...prevState.notas, {asignatura, nota: parseFloat(nota)}]
+  }));
+};
+
+
+actualizarNota = (index, nuevaNota) => {
+  const nuevasNotas = [...this.state.notas];
+  nuevasNotas[index].nota = parseFloat(nuevaNota);
+  this.setState({ notas: nuevasNotas});
+};
+ 
+eliminarNota = () => {
+  this.setState({ notas: [] })
+};
+
+calcularPromedio = () => {
+  const { notas } = this.state;
+  if (notas.length === 0) return 0;
+  const suma = notas.reduce((acc, nota) => acc + nota.nota, 0);
+  return (suma / notas.length).toFixed(2);
+};
+
+render() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="App">
+      <div className="contenedor-principal">
+        <div className="contenedor-izquierda">
+          <Formulario 
+            agregarNota={(nombre, valor) => this.agregarNota(nombre, valor)} eliminarNotas={this.eliminarNotas} 
+          />
+          <MostrarPromedio 
+          promedio={this.calcularPromedio()} 
+          />
+        </div>
+        <ListadeNotas notas={this.state.notas} actualizarNota={this.actualizarNota}/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+
+
+
+}
